@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% load static %}
 
 {% block title %}
@@ -34,7 +33,7 @@ Produtos
                     <div class="card h-100 w-100">
                       <a href="{% url 'products:detail' product.slug %}">
                             {% if product.image %}
-                            <img class="card-img-top" src="/media/{{product.image}}" alt="">
+                            <img class="card-img-top" src="{{ product.image.url }}" alt="">
                             {% else %}
                             <img class="card-img-top" src="{% static 'images/no_image.jpg' %}" alt="">
                             {% endif %}

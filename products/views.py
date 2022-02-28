@@ -21,5 +21,5 @@ class CategoriesListView(ListView):
     paginate_by = 9
 
     def get_queryset(self):
-       return Product.objects.filter(category__slug=self.kwargs['slug']).order_by('-modified')
+       return Product.objects.filter(category__slug=self.kwargs['slug'], is_available=True).order_by('-modified')
 
