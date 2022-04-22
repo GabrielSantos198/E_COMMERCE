@@ -3,3 +3,21 @@ body {
     overflow-x: hidden;
     overflow-wrap: break-word;
 }
+
+
+.change{
+  display: flex;
+}
+
+
+.add, .remove{
+  font-size: 23px;
+  color: #000;
+}
+
+
+.change .quant{
+  margin: 0 8px 0 8px;
+  padding: 5px 8px 0 8px;
+  border: .1px solid grey;
+}

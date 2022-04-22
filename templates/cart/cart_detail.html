@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load cart_tag %}
+
+{% block title %}Meu Carrinho{% endblock %}
+
+{% block content %}
+
+<div class="container my-3 table-responsive">
+    <h1 class="font-weight-bold">Meu Carrinho</h1>
+    {% if request.session.cart %}
+    <table class="table">
+        <thead>
+            <tr class="bg-light">
+                <th scope="col">Produto</th>
+                <th scope="col">Quantidade</th>
+                <th scope="col">Preço Unitário</th>
+                <th scope="col">Preço Total</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+						{% for key,value in request.session.cart.items %}
+            <tr>
+                <td class="align-middle">
+                    <a target="_blank" class="text-decoration-none" href="">
+                        {{ value.name }}
+                    </a>
+                </td>
+                <td class="align-middle change">
+                    {% if value.quantity < 6 %}
+                        <a href="{% url 'products:item_increment' value.product_id %}" class="add">+</a>
+                    {% else %}
+                        <p class="add">max</p>
+                    {% endif %}
+
+                    <p class="quant">{{ value.quantity }}</p>
+                    {% if value.quantity > 1 %}
+                        <a href="{% url 'products:item_decrement' value.product_id %}" class="remove">-</a>
+                    {% else %}
+                        <a href="{% url 'products:item_clear' key %}" class="remove">-</a>
+                    {% endif %}
+                </td>
+                <td class="align-middle">R$ {{ value.price }}</td>
+                <td class="align-middle">R$ {{ value.price|multiply:value.quantity }}0</td>
+                <td class="align-middle text-right">
+                    <form action="{% url 'products:item_clear' key %}" method="post">
+                        {% csrf_token %}
+                        <input class="btn btn-danger" type="submit" value="Remover">
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+            <tr class="bg-light">
+                <td class="font-weight-bold">Total</td>
+                <td></td>
+                <td></td>
+                <td class="font-weight-bold">R$ {{ cart_total_amount }}0</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <p class="text-right">
+    <a class="btn btn-danger" href="{% url 'products:cart_clear' %}">Limpar Carrinho</a>
+        <a class=" btn btn-primary" href="{% url 'products:list' %}">Continuar comprando</a>
+        <a class="btn btn-success" href="">Finalizar compra</a>
+    </p>
+    {% else %}
+        <p>O carrinho está vazio!</p>
+    {% endif %}
+</div>
+
+{% endblock content %}

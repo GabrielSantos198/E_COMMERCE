@@ -9,20 +9,16 @@
 <div class="container my-3">
     <div class="row">
         <div class="col-lg-3 mb-3 mb-lg-0">
-            {% if product.image %}
-                <img class="container-fluid" src="{{ product.image.url }}" alt="">
-            {% else %}
-                <img class="card-img-top" src="{% static 'images/no_image.jpg' %}" alt="">
-            {% endif %}
+          <img class="container-fluid" src="{{ product.image.url }}" alt="">
         </div>
         <div class="col-lg-9">
             <h1 class="font-weight-bold">{{ product.name }}</h1>
             <h2>R$ {{ product.price }}</h2>
             <p>{{ product.description }}</p>
-            <form class="form-group" action="" method="post">
+            <form class="form-group" action="{% url 'products:cart_add' product.id %}" method="POST">
+                {% csrf_token %}
                 <p class="form-inline">
                 </p>
-                {% csrf_token %}
                 <input class="btn btn-success" type="submit" value="Adicionar ao Carrinho">
             </form>
             <p>
