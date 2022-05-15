@@ -22,7 +22,7 @@
 						{% for key,value in request.session.cart.items %}
             <tr>
                 <td class="align-middle">
-                    <a target="_blank" class="text-decoration-none" href="">
+                  <a class="text-decoration-none" href="{% url 'products:detail' value.name %}">
                         {{ value.name }}
                     </a>
                 </td>
@@ -62,7 +62,7 @@
     <p class="text-right">
     <a class="btn btn-danger" href="{% url 'products:cart_clear' %}">Limpar Carrinho</a>
         <a class=" btn btn-primary" href="{% url 'products:list' %}">Continuar comprando</a>
-        <a class="btn btn-success" href="">Finalizar compra</a>
+        <a class="btn btn-success" href="{% url 'orders:create' %}">Finalizar compra</a>
     </p>
     {% else %}
         <p>O carrinho está vazio!</p>

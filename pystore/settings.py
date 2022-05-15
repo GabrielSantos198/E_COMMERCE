@@ -41,11 +41,13 @@ INSTALLED_APPS = [
     # Third Apps
     'debug_toolbar',
     'cart',
+    'crispy_forms',
     # My Apps
     'pystore',
     'users',
     'pages',
     'products',
+    'orders',
 ]
 
 MIDDLEWARE = [
@@ -114,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
 TIME_ZONE = 'UTC'
 
@@ -149,3 +151,7 @@ INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]
 
 # Cart
 CART_SESSION_ID = 'cart'
+
+# Bootstrap
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
