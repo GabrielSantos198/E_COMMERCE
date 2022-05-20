@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'cart',
     'crispy_forms',
+    'cloudinary',
+    'cloudinary_storage',
     # My Apps
     'pystore',
     'users',
@@ -158,4 +160,16 @@ CART_SESSION_ID = 'cart'
 
 # Bootstrap
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# Media
+MEDIA_URL = "/media-ecommerce/"
+MEDIA_ROOT = BASE_DIR / "media-ecommerce"
+
+CLOUDINARY_STORAGE  = {
+    'CLOUD_NAME' : config('CLOUD_NAME'),
+    'API_KEY' : config('API_KEY'),
+    'API_SECRET' : config('API_SECRET')
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
