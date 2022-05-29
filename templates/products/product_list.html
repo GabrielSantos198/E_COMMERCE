@@ -13,7 +13,7 @@ Produtos
 
 <div class="container my-3">
     <div class="row">
-        <div class="col-3">
+        <div class="col-4 col-md-3">
             <ul class="list-group mb-3 mb-lg-0">
                 <a class="text-decoration-none list-group-item list-group-item-light" href="{% url 'products:list' %}">
                     Todos os produtos
@@ -26,11 +26,11 @@ Produtos
                 {% endfor %}
             </ul>
         </div>
-        <div class="col-9">
+        <div class="col-8 col-md-9">
               <div class="row">
                 {% for product in product_list %}
-                  <div class="col-4 mb-4">
-                    <div class="card h-100 w-100">
+                  <div class="col-12 col-md-4 mb-4">
+                    <div class="card h-100">
                       <a href="{% url 'products:detail' product.slug %}">
                           <img class="card-img-top" src="{{ product.image.url }}" alt="">
                         </a>
